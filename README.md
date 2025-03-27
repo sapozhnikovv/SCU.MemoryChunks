@@ -1,13 +1,13 @@
 # SCU.MemoryChunks
 ![Logo](https://github.com/sapozhnikovv/SCU.MemoryChunks/blob/main/img/mem.chunks.png)
 
-Minimal, Effective, Safe and Simple extension with single functionality - Split strings or arrays by size into chunks, without allocation redundant intermediate arrays like in LINQ version (Chunks method).
+Minimal, Effective, Safe and Simple extension with single functionality - Split strings or arrays by size into chunks, without allocation redundant intermediate arrays like in LINQ version (Chunk method).
 
-This extension was originally designed to split strings, because when you use linq Chunks(N) you need to convert char arrays to strings. 
+This extension was originally designed to split strings, because when you use linq Chunk(N) you need to convert char arrays to strings. 
 
 **Issues with LINQ Approach**:
-When using `text.Chunks(N).Select(c => new string(c)).ToArray()`, you incur:
-1. `N` redundant temporary `char[]` allocations (from `Chunks()`)
+When using `text.Chunk(N).Select(c => new string(c)).ToArray()`, you incur:
+1. `N` redundant temporary `char[]` allocations (from `Chunk()`)
 2. `N` new string allocations
 3. Internal buffer resizing in `Chunks()` method
 
