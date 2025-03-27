@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>SCU.MemoryChunks</Title>
+    <Authors>Vyacheslav Sapozhnikov</Authors>
+    <Description>Minimal, Effective, Safe and Simple extension with single functionality - Split strings or arrays by size into chunks, without allocation redundant intermediate arrays like in LINQ version (Chunks method)</Description>
+    <Copyright>Copyright (c) 2025 VSapozhnikov</Copyright>
+    <PackageTags>extension; memory; strings</PackageTags>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<IncludeSymbols>True</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageProjectUrl>https://github.com/sapozhnikovv/SCU.MemoryChunks</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/sapozhnikovv/SCU.MemoryChunks</RepositoryUrl>
+	<PackageIcon>logo.png</PackageIcon>
+	<PackageId>MemoryChunks.SCU</PackageId>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<Version>1.0.0</Version>
+  </PropertyGroup>
+  
+
+  <ItemGroup>
+    <None Include="..\img\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

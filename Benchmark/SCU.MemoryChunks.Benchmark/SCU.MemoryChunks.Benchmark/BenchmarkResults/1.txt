@@ -1,0 +1,42 @@
+// * Summary *
+
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19042.1586/20H2/October2020Update)
+11th Gen Intel Core i5-11320H 3.20GHz, 1 CPU, 8 logical and 4 physical cores
+.NET SDK 8.0.400
+  [Host]     : .NET 8.0.8 (8.0.824.36612), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  DefaultJob : .NET 8.0.8 (8.0.824.36612), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+
+
+| Method                                                       | Mean      | Error     | StdDev    | Ratio | RatioSD | Rank | Gen0    | Allocated | Alloc Ratio |
+|------------------------------------------------------------- |----------:|----------:|----------:|------:|--------:|-----:|--------:|----------:|------------:|
+| SyncSplitIntoChunks_MemoryChunks_WithoutAllocationStrings    |  1.023 μs | 0.0064 μs | 0.0054 μs |  1.00 |    0.01 |    1 |  0.0210 |      88 B |        1.00 |
+| SyncSplitIntoChunks_MemoryChunks_WithAllocationStrings       |  2.718 μs | 0.0409 μs | 0.0362 μs |  2.66 |    0.04 |    2 |  6.6338 |   27752 B |      315.36 |
+| SyncSplitIntoChunks_LINQ_WithoutAllocationStrings            | 28.201 μs | 0.1729 μs | 0.1443 μs | 27.56 |    0.19 |    3 |  6.7749 |   28368 B |      322.36 |
+| SyncSplitIntoChunks_LINQ_WithAllocationStrings               | 31.524 μs | 0.6180 μs | 0.6347 μs | 30.80 |    0.62 |    4 | 13.3667 |   56032 B |      636.73 |
+| SyncSplitIntoChunks_MemoryChunks_WithAllocationStrings_Async | 87.145 μs | 1.7088 μs | 3.0373 μs | 85.15 |    2.96 |    5 |  9.7656 |   39853 B |      452.88 |
+| SyncSplitIntoChunks_LINQ_WithAllocationStrings_Async         | 96.235 μs | 1.9107 μs | 2.2745 μs | 94.04 |    2.22 |    6 | 16.3574 |   68128 B |      774.18 |
+
+// * Hints *
+Outliers
+  Test.SyncSplitIntoChunks_MemoryChunks_WithoutAllocationStrings: Default -> 2 outliers were removed (1.05 μs, 1.05 μs)
+  Test.SyncSplitIntoChunks_MemoryChunks_WithAllocationStrings: Default    -> 1 outlier  was  removed (2.90 μs)
+  Test.SyncSplitIntoChunks_LINQ_WithoutAllocationStrings: Default         -> 2 outliers were removed (28.67 μs, 29.07 μs)
+  Test.SyncSplitIntoChunks_LINQ_WithAllocationStrings: Default            -> 1 outlier  was  removed (33.71 μs)
+  Test.SyncSplitIntoChunks_LINQ_WithAllocationStrings_Async: Default      -> 1 outlier  was  removed (102.81 μs)
+
+// * Legends *
+  Mean        : Arithmetic mean of all measurements
+  Error       : Half of 99.9% confidence interval
+  StdDev      : Standard deviation of all measurements
+  Ratio       : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD     : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Rank        : Relative position of current benchmark mean among all benchmarks (Arabic style)
+  Gen0        : GC Generation 0 collects per 1000 operations
+  Allocated   : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  Alloc Ratio : Allocated memory ratio distribution ([Current]/[Baseline])
+  1 μs        : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
