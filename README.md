@@ -7,7 +7,7 @@ This extension was originally designed to split strings, because when you use li
 It means after Chunks(N).Select(s => new string(s)).ToArray() you will have allocated not only N strings, you will have allocated redundant N arrays of chars before it.
 This extension split strings without this redundant allocations, only N strings in result. 
 This extension can be used for arrays too (not only for strings). 
-It will be better than Linq too, because in this situation you will have N allocations of arrys, but Linq version has logic for array resize, and there is a possibility to have more than N allocations.
+It will be better than Linq too, because in this situation you will have N allocations of arrays, but Linq version has logic for array resize, and there is a possibility to have more than N allocations.
 
  - **No redundant** memory allocations
  - Almost **zero cognitive complexity**
