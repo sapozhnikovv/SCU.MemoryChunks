@@ -161,3 +161,8 @@ using SCU.MemoryChunks;
  - Safe for strings (immutable by nature)
  - For arrays: ensure source isn't modified during enumeration
  - Safe for long-lived enumerations
+
+
+
+## License
+Free MIT license (https://github.com/sapozhnikovv/SCU.MemoryChunks/blob/main/LICENSE)
