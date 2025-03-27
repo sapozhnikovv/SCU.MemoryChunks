@@ -26,7 +26,6 @@ namespace SCU.MemoryChunks
         /// Make sure <paramref name="input"/> won't be modified during enumeration, otherwise if your enumaration is long-running then use ToArray/ToList to materialize/execute this enumeration before changes in original array.
         /// </summary>
         /// <param name="chunkSize">max size of chunk</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<ReadOnlyMemory<T>> MemoryChunks<T>(this ReadOnlyMemory<T> source, int chunkSize)
         {
             if (chunkSize <= 0) throw new ArgumentOutOfRangeException(nameof(chunkSize));

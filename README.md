@@ -15,6 +15,9 @@ It will be better than Linq too, because in this situation you will have N alloc
  - **Async-compatible** and **Memory-safe** (uses `Memory<T>` instead of `Span<T>`)
  - **28-30x faster** than LINQ in synchronous operations
 
+Less code, less problems.
+
+
 You can use Nuget package MemoryChunks.SCU, or copy-past code of this extension in you project, or not use it. It's up to you :)
 
 Code:
@@ -47,7 +50,6 @@ namespace SCU.MemoryChunks
         /// Make sure <paramref name="input"/> won't be modified during enumeration, otherwise if your enumaration is long-running then use ToArray/ToList to materialize/execute this enumeration before changes in original array.
         /// </summary>
         /// <param name="chunkSize">max size of chunk</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<ReadOnlyMemory<T>> MemoryChunks<T>(this ReadOnlyMemory<T> source, int chunkSize)
         {
             if (chunkSize <= 0) throw new ArgumentOutOfRangeException(nameof(chunkSize));
