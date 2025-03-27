@@ -1,12 +1,24 @@
 # SCU.MemoryChunks
 ![Logo](https://github.com/sapozhnikovv/SCU.MemoryChunks/blob/main/img/mem.chunks.png)
-Minimal, Effective, Safe and Simple extension with single functionality - Split strings or arrays by size into chunks, without allocation redundant intermediate arrays like in LINQ version (Chunks method).
 
-This extension was originally designed to split strings, because when you use linq Chunks(N) you need to convert char arrays to strings. 
-It means after Chunks(N).Select(s => new string(s)).ToArray() you will have allocated not only N strings, you will have allocated redundant N arrays of chars before it.
+Minimal, Effective, Safe and Simple extension with single functionality - Split strings or arrays by size into chunks, without allocation redundant intermediate arrays like in LINQ version (Chunk method).
+
+This extension was originally designed to split strings, because when you use linq Chunk(N) you need to convert char arrays to strings. 
+
+**Issues with LINQ Approach**:
+When using `text.Chunk(N).Select(c => new string(c)).ToArray()`, you incur:
+1. `N` redundant temporary `char[]` allocations (from `Chunk()`)
+2. `N` new string allocations
+3. Internal buffer resizing in `Chunks()` method
+
+**This Solution**:
+- Zero intermediate allocations
+- Direct slicing of source string
+- Controlled allocation points via `.ToString()`
+  
 This extension split strings without this redundant allocations, only N strings in result. 
 This extension can be used for arrays too (not only for strings). 
-It will be better than Linq too, because in this situation you will have N allocations of arrys, but Linq version has logic for array resize, and there is a possibility to have more than N allocations.
+It will be better than Linq too, because in this situation you will have N allocations of arrays, but Linq version has logic for array resize, and there is a possibility to have more than N allocations.
 
  - **No redundant** memory allocations
  - Almost **zero cognitive complexity**
@@ -151,3 +163,8 @@ using SCU.MemoryChunks;
  - Safe for strings (immutable by nature)
  - For arrays: ensure source isn't modified during enumeration
  - Safe for long-lived enumerations
+
+
+
+## License
+Free MIT license (https://github.com/sapozhnikovv/SCU.MemoryChunks/blob/main/LICENSE)
