@@ -15,6 +15,9 @@ When using `text.Chunk(N).Select(c => new string(c)).ToArray()`, you incur:
 - Zero intermediate allocations
 - Direct slicing of source string
 - Controlled allocation points via `.ToString()`
+
+# Why not 'Substrings'?
+Yes, it would be possible to do with 'substring', it would be even faster, but in case you need to work with Memory<> I decided to make this universal extension.
   
 This extension split strings without this redundant allocations, only N strings in result. 
 This extension can be used for arrays too (not only for strings). 
