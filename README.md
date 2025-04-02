@@ -28,7 +28,7 @@ It will be better than Linq too, because in this situation you will have N alloc
  - Without 'ref struct enumerators', without self-written enumerators, can be used on almost all .net f/c versions (copy-paste in project)
  - **Logic in 3 lines of code**
  - **Async-compatible** and **Memory-safe** (uses `Memory<T>` instead of `Span<T>`)
- - **11.2x faster** than LINQ in synchronous operations
+ - **11.2x faster** than LINQ in synchronous operations (**1.7x memory efficiency**)
 
 Less code, less problems.
 
@@ -116,30 +116,13 @@ using SCU.MemoryChunks;
 | **MemoryChunks Async** (with alloc)            |   **79.32** | 78.36 |      **39,855 B** |             452.90x |
 | LINQ Chunk Async (with alloc)                  |     93.40 | 92.27 |        68,128 B  |             774.18x |
 
-> **Note about Async tests**:  
-> The async benchmarks simulate await points during iteration. While they show MemoryChunks' consistent advantage (1.7x less memory), these scenarios are primarily included to demonstrate thread safety with `Memory<T>`. In real-world usage, the synchronous versions will always be more efficient.
-
-
-1. **Performance**:
-   - `MemoryChunks` is **28-30x faster** than LINQ for synchronous operations
-   - Async overhead adds ~80μs regardless of method
-
-2. **Memory Efficiency**:
-   - `MemoryChunks` allocates **315x less memory** than LINQ version
-   - String allocation multiplies memory usage by:
-     - 315x for MemoryChunks
-     - 636x for LINQ
-
-3. **Async Impact**:
-   - MemoryChunks still uses **1.7x less memory** than LINQ in async mode
-   - Maintains consistent performance advantage in async scenarios
-
-
 **String Chunks Comparison**  
 (because we should compare tests with allocations, not just compare tests with no alloc and alloc)
 - **Synchronous**: MemoryChunks processes strings **11.2x faster** (2.69μs vs 30.02μs) while using **2x less memory** (27.7KB vs 56KB) than LINQ.  
 - **Async**: Maintains **1.2x speed advantage** (79.32μs vs 93.40μs) with **1.7x memory efficiency** (39.8KB vs 68.1KB).  
 
+> **Note about Async tests**:  
+> The async benchmarks simulate await points during iteration. While they show MemoryChunks' consistent advantage (1.7x less memory), these scenarios are primarily included to demonstrate thread safety with `Memory<T>`. In real-world usage, the synchronous versions will always be more efficient.
 
 
 ### Benchmark for Arrays
@@ -151,20 +134,6 @@ using SCU.MemoryChunks;
 | LINQ Chunk (with array alloc)                          | 30,181     | 37.48 |       53,504 B    |              608.00x |
 | **MemoryChunks Async** (with alloc)                    | **64,255** | 79.75 |      **64,552 B** |             733.55x  |
 | LINQ Chunk Async (with alloc)                          | 91,641     | 113.74|       65,600 B    |              745.45x |
-
-
-1. **Performance Dominance**:
-   - Synchronous processing:
-     - **37x faster** than LINQ when using raw chunks
-     - **8x faster** even with array conversions
-   - Async processing:
-     - **1.4x faster** with lower memory overhead
-
-2. **Memory Efficiency**:
-   - Using pure `Memory<T>`:
-     - **608x less allocations** vs LINQ
-   - Even with array conversions:
-     - **2% more efficient** memory usage than LINQ
 
 
 **Array Chunks Comparison**  
