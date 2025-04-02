@@ -134,9 +134,12 @@ using SCU.MemoryChunks;
    - MemoryChunks still uses **1.7x less memory** than LINQ in async mode
    - Maintains consistent performance advantage in async scenarios
 
-**String Chunks Comparison**   (because we should compare tests with allocations, not just compare tests with no alloc and alloc)
+
+**String Chunks Comparison**  
+(because we should compare tests with allocations, not just compare tests with no alloc and alloc)
 - **Synchronous**: MemoryChunks processes strings **11.2x faster** (2.69μs vs 30.02μs) while using **2x less memory** (27.7KB vs 56KB) than LINQ.  
 - **Async**: Maintains **1.2x speed advantage** (79.32μs vs 93.40μs) with **1.7x memory efficiency** (39.8KB vs 68.1KB).  
+
 
 
 ### Benchmark for Arrays
@@ -149,7 +152,6 @@ using SCU.MemoryChunks;
 | **MemoryChunks Async** (with alloc)                    | **64,255** | 79.75 |      **64,552 B** |             733.55x  |
 | LINQ Chunk Async (with alloc)                          | 91,641     | 113.74|       65,600 B    |              745.45x |
 
-#### Key Findings for Arrays
 
 1. **Performance Dominance**:
    - Synchronous processing:
@@ -164,9 +166,12 @@ using SCU.MemoryChunks;
    - Even with array conversions:
      - **2% more efficient** memory usage than LINQ
 
-**Array Chunks Comparison**  (because we should compare tests with allocations, not just compare tests with no alloc and alloc)
+
+**Array Chunks Comparison**  
+(because we should compare tests with allocations, not just compare tests with no alloc and alloc)
 - **Synchronous**: MemoryChunks handles arrays **7.9x faster** (3,833ns vs 30,181ns) with **2% memory savings** (52.4KB vs 53.5KB).  
 - **Async**: Shows **1.4x performance gain** (64,255ns vs 91,641ns) despite near-identical memory usage (64.5KB vs 65.6KB).  .
+
 
 ## Recommended Use Cases
 
