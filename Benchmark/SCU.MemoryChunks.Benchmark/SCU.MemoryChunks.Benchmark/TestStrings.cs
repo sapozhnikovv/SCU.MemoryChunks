@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 [MemoryDiagnoser]
 [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
-public class Test
+public class TestStrings
 {
     private string Text = null;
     private const int ChunkSize = 100;

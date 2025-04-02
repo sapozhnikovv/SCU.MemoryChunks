@@ -40,9 +40,9 @@ async Task CheckArraysAsync()
         foreach (var chunk in enumerable)
         {
             await Task.Yield();
-            var str = chunk.ToArray();
+            var arrChnk = chunk.ToArray();
             var valueFomrLinqMethod = linq[i++];
-            if (!Enumerable.SequenceEqual(valueFomrLinqMethod, str))
+            if (!Enumerable.SequenceEqual(valueFomrLinqMethod, arrChnk))
             {
                 throw new Exception("arrays are not equal because of await, need to recheck MemoryChunks sources, probably Span<> used (work on stack), instead of Memory<> (work on heap)");
             }
@@ -57,6 +57,9 @@ async Task CheckArraysAsync()
 }
 await CheckStrinsAsync().ConfigureAwait(false);
 await CheckArraysAsync().ConfigureAwait(false);
-Console.WriteLine("MemoryChunks working fine");
-BenchmarkDotNet.Running.BenchmarkRunner.Run<Test>();
+Console.WriteLine("MemoryChunks working fine, starting Benchmark of Arrays");
+BenchmarkDotNet.Running.BenchmarkRunner.Run<TestArrays>();
+Console.WriteLine("Press any key to start Benchmark of Strings");
+Console.ReadKey();
+BenchmarkDotNet.Running.BenchmarkRunner.Run<TestStrings>();
 Console.ReadKey();
