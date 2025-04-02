@@ -141,7 +141,6 @@ using SCU.MemoryChunks;
 |--------------------------------------------------------|-----------:|------:|------------------:|---------------------:|
 | **MemoryChunks** (no array alloc)                      |   **805**  |  1.00 |          **88 B** |               1.00x  |
 | **MemoryChunks** (with array alloc)                    | **3,833**  |  4.76 |      **52,448 B** |             596.00x  |
-| LINQ Chunk (no array alloc)                            | 30,168     | 37.46 |       53,504 B    |              608.00x |
 | LINQ Chunk (with array alloc)                          | 30,181     | 37.48 |       53,504 B    |              608.00x |
 | **MemoryChunks Async** (with alloc)                    | **64,255** | 79.75 |      **64,552 B** |             733.55x  |
 | LINQ Chunk Async (with alloc)                          | 91,641     | 113.74|       65,600 B    |              745.45x |
