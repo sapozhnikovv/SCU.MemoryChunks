@@ -28,7 +28,7 @@ It will be better than Linq too, because in this situation you will have N alloc
  - Without 'ref struct enumerators', without self-written enumerators, can be used on almost all .net f/c versions (copy-paste in project)
  - **Logic in 3 lines of code**
  - **Async-compatible** and **Memory-safe** (uses `Memory<T>` instead of `Span<T>`)
- - **28-30x faster** than LINQ in synchronous operations
+ - **11.2x faster** than LINQ in synchronous operations
 
 Less code, less problems.
 
