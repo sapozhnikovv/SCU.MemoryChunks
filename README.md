@@ -105,7 +105,7 @@ using SCU.MemoryChunks;
  - BenchmarkDotNet v0.14.0
 
 ## Results
-
+### Benchmark for Strings
 
 | Method                                         | Time (μs) | Ratio | Memory Allocated | Relative Allocation |
 |------------------------------------------------|----------:|------:|-----------------:|--------------------:|
@@ -133,6 +133,34 @@ using SCU.MemoryChunks;
 3. **Async Impact**:
    - MemoryChunks still uses **1.7x less memory** than LINQ in async mode
    - Maintains consistent performance advantage in async scenarios
+
+
+### Benchmark for Arrays
+
+| Method                                                 | Time (ns)  | Ratio | Memory Allocated  | Relative Allocation  |
+|--------------------------------------------------------|-----------:|------:|------------------:|---------------------:|
+| **MemoryChunks** (no array alloc)                      |   **805**  |  1.00 |          **88 B** |               1.00x  |
+| **MemoryChunks** (with array alloc)                    | **3,833**  |  4.76 |      **52,448 B** |             596.00x  |
+| LINQ Chunk (no array alloc)                            | 30,168     | 37.46 |       53,504 B    |              608.00x |
+| LINQ Chunk (with array alloc)                          | 30,181     | 37.48 |       53,504 B    |              608.00x |
+| **MemoryChunks Async** (with alloc)                    | **64,255** | 79.75 |      **64,552 B** |             733.55x  |
+| LINQ Chunk Async (with alloc)                          | 91,641     | 113.74|       65,600 B    |              745.45x |
+
+#### Key Findings for Arrays
+
+1. **Performance Dominance**:
+   - Synchronous processing:
+     - **37x faster** than LINQ when using raw chunks
+     - **8x faster** even with array conversions
+   - Async processing:
+     - **1.4x faster** with lower memory overhead
+
+2. **Memory Efficiency**:
+   - Using pure `Memory<T>`:
+     - **608x less allocations** vs LINQ
+   - Even with array conversions:
+     - **2% more efficient** memory usage than LINQ
+
 
 ## Recommended Use Cases
 
