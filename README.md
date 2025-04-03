@@ -127,7 +127,7 @@ using SCU.MemoryChunks;
 
 ### Benchmark for Arrays
 
-| Method                                                 | Time (ns)  | Ratio | Memory Allocated  | Relative Allocation  |
+| Method                                                 | Time (μs)  | Ratio | Memory Allocated  | Relative Allocation  |
 |--------------------------------------------------------|-----------:|------:|------------------:|---------------------:|
 | **MemoryChunks** (no array alloc)                      |   **805**  |  1.00 |          **88 B** |               1.00x  |
 | **MemoryChunks** (with array alloc)                    | **3,833**  |  4.76 |      **52,448 B** |             596.00x  |
@@ -138,8 +138,8 @@ using SCU.MemoryChunks;
 
 **Array Chunks Comparison**  
 (because we should compare tests with allocations, not just compare tests with no alloc and alloc)
-- **Synchronous**: MemoryChunks handles arrays **7.9x faster** (3,833ns vs 30,181ns) with **2% memory savings** (52.4KB vs 53.5KB).  
-- **Async**: Shows **1.4x performance gain** (64,255ns vs 91,641ns) despite near-identical memory usage (64.5KB vs 65.6KB).  .
+- **Synchronous**: MemoryChunks handles arrays **7.9x faster** (3,833μs vs 30,181μs) with **2% memory savings** (52.4KB vs 53.5KB).  
+- **Async**: Shows **1.4x performance gain** (64,255μs vs 91,641μs) despite near-identical memory usage (64.5KB vs 65.6KB).  .
 
 
 ## Recommended Use Cases
