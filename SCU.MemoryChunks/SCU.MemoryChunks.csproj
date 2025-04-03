@@ -19,7 +19,8 @@
 	<PackageIcon>logo.png</PackageIcon>
 	<PackageId>MemoryChunks.SCU</PackageId>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<Version>1.0.1</Version>
+	<Version>1.0.1.2</Version>
+	<PackageReleaseNotes>No differences from v1.0.1, just changed Readme.md</PackageReleaseNotes>
   </PropertyGroup>
   
 
